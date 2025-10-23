@@ -108,6 +108,8 @@ export default function Home() {
       if (!response.ok) {
         throw new Error('Failed to update todo');
       }
+
+      fetchTodos();
     } catch (err) {
       setError('Failed to delete todo');
       console.error('Error deleting todo:', err);
