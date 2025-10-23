@@ -16,7 +16,6 @@ export const storage = {
     todos.forEach(todo => {
         if (todo.id === id)  {
             todo.completed = !todo.completed
-            todos = [...todos, todo]
         } 
     })
   },
