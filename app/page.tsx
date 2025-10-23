@@ -102,7 +102,7 @@ export default function Home() {
     //   setTodos(todos.filter(todo => todo.id !== id));
 
       const response = await fetch(`/api/todos/${id}`, {
-        method: 'UPDATE',
+        method: 'PUT',
       });
 
       if (!response.ok) {

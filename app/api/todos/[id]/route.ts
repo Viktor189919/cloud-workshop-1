@@ -19,7 +19,7 @@ export async function DELETE(
   return NextResponse.json({ success: true });
 }
 
-export async function UPDATE(
+export async function PUT(
   request: NextRequest,
   { params }: { params: { id: string } }
 ) {
