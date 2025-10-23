@@ -18,3 +18,21 @@ export async function DELETE(
 
   return NextResponse.json({ success: true });
 }
+
+export async function UPDATE(
+  request: NextRequest,
+  { params }: { params: { id: string } }
+) {
+  const { id } = params;
+
+  if (!id) {
+    return NextResponse.json(
+      { error: 'ID is required' },
+      { status: 400 }
+    );
+  }
+
+  storage.update(id);
+
+  return NextResponse.json({ success: true });
+}

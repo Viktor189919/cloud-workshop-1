@@ -94,6 +94,28 @@ export default function Home() {
     }
   };
 
+  const updateTodo = async (id : string) => {
+    try {
+      setError('');
+
+      // Optimistic update
+    //   setTodos(todos.filter(todo => todo.id !== id));
+
+      const response = await fetch(`/api/todos/${id}`, {
+        method: 'UPDATE',
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to update todo');
+      }
+    } catch (err) {
+      setError('Failed to delete todo');
+      console.error('Error deleting todo:', err);
+      // Refresh to get actual state
+      fetchTodos();
+    }
+  };    
+
   const getRelativeTime = (dateString: string) => {
     const date = new Date(dateString);
     const now = new Date();
@@ -181,6 +203,11 @@ export default function Home() {
                   key={todo.id}
                   className="flex items-center justify-between p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors group"
                 >
+                  <input
+                      type="checkbox"
+                      checked={todo.completed} 
+                      onChange={() => updateTodo(todo.id)}
+                      />
                   <div className="flex-1">
                     <p className="text-gray-800">{todo.text}</p>
                     <p className="text-xs text-gray-500 mt-1">

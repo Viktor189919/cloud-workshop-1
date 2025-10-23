@@ -12,6 +12,14 @@ export const storage = {
     todos.push(todo);
     return todo;
   },
+  update: (id: string) => {
+    todos.forEach(todo => {
+        if (todo.id === id)  {
+            todo.completed = !todo.completed
+            todos = [...todos, todo]
+        } 
+    })
+  },
   remove: (id: string) => {
     todos = todos.filter(t => t.id !== id);
     return true;
